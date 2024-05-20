@@ -1,7 +1,7 @@
 import { createTheme } from '@mantine/core';
 
 const theme = createTheme({
-    fontFamily: 'Poppins, sans-serif',
+    fontFamily: 'Inter, sans-serif',
     other: {
         purple100: '#F2ECFA',
         purple200: '#E5D5FA',

@@ -1,5 +1,5 @@
-import { AppShell, AppShellNavbar, useMantineTheme } from '@mantine/core';
-import { Outlet } from 'react-router-dom';
+import { AppShell, AppShellNavbar, Flex, useMantineTheme } from '@mantine/core';
+import { Link, Outlet } from 'react-router-dom';
 import styles from './layout.module.css';
 import LogoLink from '../../shared/logoLink/logoLink';
 
@@ -18,6 +18,14 @@ function Layout() {
                 }}
             >
                 <LogoLink />
+                <Flex gap={12} direction="column" mt={80}>
+                    <Link to="/" className={styles.link}>
+                        Movies
+                    </Link>
+                    <Link to="/" className={styles.link}>
+                        Rated movies
+                    </Link>
+                </Flex>
             </AppShellNavbar>
             <Outlet />
         </AppShell>
