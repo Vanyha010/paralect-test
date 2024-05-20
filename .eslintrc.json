@@ -47,7 +47,8 @@
       "react/react-in-jsx-scope": "off",
       "import/extensions": "off",
       "import/no-absolute-path": "off",
-      "eslint-plugin-import/no-unresolved": "off"
+      "eslint-plugin-import/no-unresolved": "off",
+      "no-console": "off"
   },
   "settings": {
       "react": {
