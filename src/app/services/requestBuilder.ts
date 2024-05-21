@@ -2,7 +2,6 @@ import axios from 'axios';
 
 const requestBuilder = {
     host: 'https://api.themoviedb.org/3',
-    query: '',
     options: {
         headers: {
             Authorization: `Bearer ${import.meta.env.CTP_TOKEN}`,

@@ -4,7 +4,7 @@ import { genreListReducer, queryParamsReducer } from './reducers';
 
 const rootReducer = combineReducers({
     genresList: genreListReducer, // List of all genres and their Ids
-    queryParams: queryParamsReducer,
+    queryParams: queryParamsReducer, // query parameters used on 'movies' page
 });
 
 const store = () => {

@@ -4,7 +4,7 @@ import { MovieItem } from '../../shared/types/types';
 import MovieCardList from '../../widgets/movieCardList/movieCardList';
 import styles from './mainpage.module.css';
 import requestBuilder from '../../app/services/requestBuilder';
-import useQueryString from '../../shared/hooks/useCustomQuery';
+import useQueryString from '../../shared/hooks/useQueryString';
 import MovieSelectBar from '../../widgets/movieSelectBar/movieSelectBar';
 
 type MovieListType = {
