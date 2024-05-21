@@ -22,7 +22,6 @@ function MainPage() {
 
     useEffect(() => {
         fetchMovies();
-        requestBuilder.getGenresNames().then((res) => console.log(res));
     }, []);
 
     return (
