@@ -12,6 +12,7 @@ function Layout() {
                 withBorder={false}
                 style={{
                     backgroundColor: theme.other.purple100,
+                    minWidth: 280,
                     width: 280,
                     padding: 25,
                     position: 'static',

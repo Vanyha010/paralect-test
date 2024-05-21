@@ -21,7 +21,6 @@
       "ecmaVersion": "latest",
       "sourceType": "module"
   },
-  "noInlineConfig": true,
   "env": {
       "browser": true,
       "es6": true,
@@ -48,7 +47,24 @@
       "import/extensions": "off",
       "import/no-absolute-path": "off",
       "eslint-plugin-import/no-unresolved": "off",
-      "no-console": "off"
+      "no-console": "off",
+      "padding-line-between-statements": [
+        "error",
+        {
+          "blankLine": "always",
+          "prev": [
+            "block",
+            "block-like",
+            "cjs-export",
+            "class",
+            "export",
+            "import"
+          ],
+          "next": "*"
+        },
+        { "blankLine": "any", "prev": ["export", "import"], "next": ["export", "import"] },
+        { "blankLine": "always", "prev": "*", "next": "return" }
+      ]
   },
   "settings": {
       "react": {
