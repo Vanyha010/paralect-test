@@ -4,14 +4,22 @@ import { IRootState } from '../../app/services/store/store';
 
 const useQueryString = () => {
     const [queryString, setQueryString] = useState('');
-    const selectedGenres = useSelector((state: IRootState) => state.selectedGenres);
+    const queryParams = useSelector((state: IRootState) => state.queryParams);
+    const { genresSelected, releaseYearSelected } = queryParams;
 
     useEffect(() => {
-        setQueryString('');
-        if (selectedGenres?.length) {
-            setQueryString(`&with_genres=${selectedGenres.join(',')}`);
+        let newQueryString = '';
+        if (genresSelected?.length) {
+            newQueryString = `&with_genres=${genresSelected.join(',')}`;
         }
-    }, [selectedGenres]);
+
+        if (releaseYearSelected?.length) {
+            newQueryString += `&primary_release_year=${releaseYearSelected}`;
+        }
+
+        setQueryString(newQueryString);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [queryParams]);
 
     return queryString;
 };

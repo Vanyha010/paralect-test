@@ -24,22 +24,20 @@ function GenreSelect() {
 
     const setSelectedGenres = (genres: string[]) => {
         const action = {
-            type: 'SET_SELECTED_GENRES',
+            type: 'SET_GENRES',
             payload: genres,
         };
         dispatch(action);
     };
 
     return (
-        <div>
-            <MultiSelect
-                label="Genres"
-                placeholder="Select genres"
-                data={genresNames}
-                // value={genre}
-                onChange={(e) => setSelectedGenres(e)}
-            />
-        </div>
+        <MultiSelect
+            label="Genres"
+            placeholder="Select genres"
+            data={genresNames}
+            // value={genre}
+            onChange={(e) => setSelectedGenres(e)}
+        />
     );
 }
 

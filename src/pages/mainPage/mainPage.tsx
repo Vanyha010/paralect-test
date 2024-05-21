@@ -1,13 +1,11 @@
 import { AppShellMain, Title } from '@mantine/core';
 import { useEffect, useState } from 'react';
-// import { useSelector } from 'react-redux';
 import { MovieItem } from '../../shared/types/types';
 import MovieCardList from '../../widgets/movieCardList/movieCardList';
 import styles from './mainpage.module.css';
 import requestBuilder from '../../app/services/requestBuilder';
-import GenreSelect from '../../features/genreSelect/genreSelect';
-// import { IRootState } from '../app/services/store/store';
 import useQueryString from '../../shared/hooks/useCustomQuery';
+import MovieSelectBar from '../../widgets/movieSelectBar/movieSelectBar';
 
 type MovieListType = {
     page: number;
@@ -34,7 +32,7 @@ function MainPage() {
             <Title order={1} fz={32}>
                 Movies
             </Title>
-            <GenreSelect />
+            <MovieSelectBar />
             <MovieCardList props={moviesList} />
         </AppShellMain>
     );

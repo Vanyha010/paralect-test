@@ -1,10 +1,13 @@
-// import { useState } from 'react';
 import GenreSelect from '../../features/genreSelect/genreSelect';
+import YearSelect from '../../features/yearSelect/yearSelect';
 
 function MovieSelectBar() {
-    // const [genres, setGenres] = useState([]);
-
-    return <GenreSelect />;
+    return (
+        <>
+            <GenreSelect />
+            <YearSelect />
+        </>
+    );
 }
 
 export default MovieSelectBar;

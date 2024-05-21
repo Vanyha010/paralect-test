@@ -27,28 +27,47 @@ export const genreListReducer = (
     action: GenresActionType = {}
 ) => {
     switch (action.type) {
-        case 'SET_GENRES':
+        case 'NEVER_WILL_BE_CALLED':
             return action.payload;
         default:
             return state;
     }
 };
 
-// These are genres numbers, selected in the movieSelectBar widget
-const initialSelectedGenreState: string[] = [];
+type QueryParamsStateType = {
+    genresSelected: string[];
+    releaseYearSelected: string;
+    minRatingSelected: string;
+    maxRatingSelected: string;
+};
 
-type SelectedGenresActionType = {
+const initialQueryParamsState: QueryParamsStateType = {
+    genresSelected: [],
+    releaseYearSelected: '',
+    minRatingSelected: '',
+    maxRatingSelected: '',
+};
+
+type QueryParamsActionType = {
     type?: string;
     payload?: string[];
 };
 
-export const selectedGenreReducer = (
-    state: string[] = initialSelectedGenreState,
-    action: SelectedGenresActionType = {}
+export const queryParamsReducer = (
+    state: QueryParamsStateType = initialQueryParamsState,
+    action: QueryParamsActionType = {}
 ) => {
     switch (action.type) {
-        case 'SET_SELECTED_GENRES':
-            return action.payload;
+        case 'SET_GENRES':
+            return {
+                ...state,
+                genresSelected: action.payload,
+            };
+        case 'SET_YEAR':
+            return {
+                ...state,
+                releaseYearSelected: action.payload,
+            };
         default:
             return state;
     }

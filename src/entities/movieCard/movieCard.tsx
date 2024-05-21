@@ -59,7 +59,7 @@ function MovieCard({ props }: { props: MovieItem }) {
                         >
                             {props.original_title}
                         </Title>
-                        <Text>{releaseYear}</Text>
+                        <Text>{releaseYear || 'Unknown year'}</Text>
                         <Box className={styles.rating}>
                             <img src={starYellow} alt="Rating" />
                             <Text fw={600}>{props.vote_average}</Text>
