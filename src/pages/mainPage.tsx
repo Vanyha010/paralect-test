@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { MovieItem } from '../shared/types/types';
 import MovieCardList from '../widgets/movieCardList/movieCardList';
 import styles from './mainpage.module.css';
+import requestBuilder from '../app/services/requestBuilder';
 
 type MovieListType = {
     page: number;
@@ -14,14 +15,14 @@ type MovieListType = {
 function MainPage() {
     const [moviesList, setMoviesList] = useState<MovieItem[]>([]);
 
-    const fetchData = () => {
-        fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${import.meta.env.CTP_API_KEY}`)
-            .then((data) => data.json())
-            .then((res: MovieListType) => setMoviesList(res.results));
+    const fetchMovies = async () => {
+        const response: MovieListType = await requestBuilder.getMovies();
+        setMoviesList(response.results);
     };
 
     useEffect(() => {
-        fetchData();
+        fetchMovies();
+        requestBuilder.getGenresNames().then((res) => console.log(res));
     }, []);
 
     return (

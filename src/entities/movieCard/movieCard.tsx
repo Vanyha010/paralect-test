@@ -11,7 +11,7 @@ function MovieCard({ props }: { props: MovieItem }) {
     const theme = useMantineTheme();
 
     return (
-        <Card className={styles.movieCard} flex-direction="row">
+        <Card className={styles.movieCard}>
             <Box className={styles.movieCardContent}>
                 <img
                     src={`${imgPath}${props.poster_path}`}

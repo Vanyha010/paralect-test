@@ -1,6 +1,6 @@
 .movieCard {
     display: flex;
-    flex-direction: row;
+    flex-direction: row !important;
     max-width: 50%;
     max-height: 218px;
     padding: 24px;
