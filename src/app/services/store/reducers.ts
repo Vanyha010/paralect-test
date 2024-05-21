@@ -68,6 +68,16 @@ export const queryParamsReducer = (
                 ...state,
                 releaseYearSelected: action.payload,
             };
+        case 'SET_LOWER_RATING':
+            return {
+                ...state,
+                minRatingSelected: action.payload,
+            };
+        case 'SET_HIGHER_RATING':
+            return {
+                ...state,
+                maxRatingSelected: action.payload,
+            };
         default:
             return state;
     }
