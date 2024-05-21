@@ -1,4 +1,4 @@
-import { Box, Text, Title, useMantineTheme } from '@mantine/core';
+import { Box, Image, Text, Title, useMantineTheme } from '@mantine/core';
 import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { MovieItem } from '../../shared/types/types';
@@ -14,19 +14,21 @@ const imgPath = 'http://image.tmdb.org/t/p/w500';
 function MovieCard({ props }: { props: MovieItem }) {
     const releaseYear = new Date(props.release_date).getFullYear();
     const theme = useMantineTheme();
-    const genresMap = useSelector((state: IRootState) => state.genres.genresMap.genres);
+    const genresMap = useSelector((state: IRootState) => state.genresList?.genresMap.genres);
     const [genresNames, setGenreNames] = useState<string[]>([]);
 
     const getGenresNames = () => {
-        const arr: string[] = [];
-        props.genre_ids.forEach((id) => {
-            genresMap.forEach((item: GenreType) => {
-                if (item.id === id && arr.length < 3) {
-                    arr.push(item.name);
-                }
+        if (Array.isArray(genresMap)) {
+            const arr: string[] = [];
+            props.genre_ids.forEach((id) => {
+                genresMap.forEach((item: GenreType) => {
+                    if (item.id === id && arr.length < 3) {
+                        arr.push(item.name);
+                    }
+                });
             });
-        });
-        setGenreNames(arr);
+            setGenreNames(arr);
+        }
     };
 
     useEffect(() => {
@@ -37,10 +39,12 @@ function MovieCard({ props }: { props: MovieItem }) {
     return (
         <Box className={styles.movieCard}>
             <Box className={styles.movieCardContent}>
-                <img
+                <Image
                     src={`${imgPath}${props.poster_path}`}
-                    alt={altImg}
+                    fallbackSrc={altImg}
                     className={styles.movieCardImage}
+                    w={120}
+                    h="100%"
                 />
                 <Box className={styles.movieCardDescription}>
                     <Box className={styles.movieCardGeneral}>

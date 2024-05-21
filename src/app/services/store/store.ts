@@ -1,17 +1,17 @@
 import { combineReducers } from 'redux';
 import { configureStore } from '@reduxjs/toolkit';
-import { genreReducer } from './reducers';
+import { genreListReducer, selectedGenreReducer } from './reducers';
+
+const rootReducer = combineReducers({
+    genresList: genreListReducer, // List of all genres and their Ids
+    selectedGenres: selectedGenreReducer, // Genres numbers selected in the movieSelectBar widget
+});
 
 const store = () => {
-    const rootReducer = combineReducers({
-        genres: genreReducer,
-    });
-
     return configureStore({
         reducer: rootReducer,
     });
 };
 
-const rootReducer = combineReducers({});
 export type IRootState = ReturnType<typeof rootReducer>;
 export { store };
