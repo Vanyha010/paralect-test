@@ -1,9 +1,10 @@
-import { Box, Card, Text, Title, useMantineTheme } from '@mantine/core';
+import { Box, Text, Title, useMantineTheme } from '@mantine/core';
 import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { MovieItem } from '../../shared/types/types';
 import altImg from '../../assets/noposter.svg';
-import starSvg from '../../assets/star-yellow.svg';
+import starYellow from '../../assets/star-yellow.svg';
+import starNotRated from '../../assets/star-not-rated.svg';
 import styles from './moviecard.module.css';
 import { IRootState } from '../../app/services/store/store';
 import { GenreType } from '../../app/services/store/reducers';
@@ -17,7 +18,6 @@ function MovieCard({ props }: { props: MovieItem }) {
     const [genresNames, setGenreNames] = useState<string[]>([]);
 
     const getGenresNames = () => {
-        console.log(genresMap);
         const arr: string[] = [];
         props.genre_ids.forEach((id) => {
             genresMap.forEach((item: GenreType) => {
@@ -31,10 +31,11 @@ function MovieCard({ props }: { props: MovieItem }) {
 
     useEffect(() => {
         getGenresNames();
-    });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     return (
-        <Card className={styles.movieCard}>
+        <Box className={styles.movieCard}>
             <Box className={styles.movieCardContent}>
                 <img
                     src={`${imgPath}${props.poster_path}`}
@@ -42,10 +43,11 @@ function MovieCard({ props }: { props: MovieItem }) {
                     className={styles.movieCardImage}
                 />
                 <Box className={styles.movieCardDescription}>
-                    <Box>
+                    <Box className={styles.movieCardGeneral}>
                         <Title
                             order={6}
                             fz={20}
+                            lh={1.2}
                             fw={600}
                             style={{
                                 color: theme.other.purple500,
@@ -55,18 +57,21 @@ function MovieCard({ props }: { props: MovieItem }) {
                         </Title>
                         <Text>{releaseYear}</Text>
                         <Box className={styles.rating}>
-                            <img src={starSvg} alt="Rating" />
-                            <Text>{props.vote_average}</Text>
-                            <Text>({props.vote_count})</Text>
+                            <img src={starYellow} alt="Rating" />
+                            <Text fw={600}>{props.vote_average}</Text>
+                            <Text style={{ color: theme.other.grey600 }}>({props.vote_count})</Text>
                         </Box>
                     </Box>
                     <Box className={styles.movieCardGenres}>
-                        <span>Genres: </span>
+                        <span className={styles.genresTitle}>Genres</span>
                         <span>{genresNames.join(', ')}</span>
                     </Box>
                 </Box>
             </Box>
-        </Card>
+            <Box>
+                <img src={starNotRated} alt="Rate" />
+            </Box>
+        </Box>
     );
 }
 

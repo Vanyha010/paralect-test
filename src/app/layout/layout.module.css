@@ -2,7 +2,7 @@
 
 .container {
     max-width: 1440px;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     margin: 0 auto;
 }
@@ -21,4 +21,9 @@
     font-weight: 700;
     color: var(--purple-500);
     background-color: var(--purple-200);
+}
+
+.test {
+    height: 100% !important;
+    position: relative;
 }

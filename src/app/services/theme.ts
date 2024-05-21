@@ -9,6 +9,7 @@ const theme = createTheme({
         purple400: '#BD93F7',
         purple500: '#9854F6',
         purple600: '#541F9d',
+        grey600: '#7B7C88',
     },
 });
 

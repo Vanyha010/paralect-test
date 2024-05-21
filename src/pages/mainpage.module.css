@@ -1,3 +1,11 @@
 .main {
-    padding: 0 90px;
+    padding: 0 130px 0 330px !important;
+    background-color: var(--grey-100);
+}
+
+@media screen and (max-width: 1300px) {
+    .main {
+        padding: 0 40px 0 320px !important;
+    }
+
 }

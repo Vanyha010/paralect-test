@@ -9,13 +9,15 @@ function Layout() {
     return (
         <AppShell className={styles.container}>
             <AppShellNavbar
+                className={styles.test}
                 withBorder={false}
                 style={{
                     backgroundColor: theme.other.purple100,
                     minWidth: 280,
                     width: 280,
                     padding: 25,
-                    position: 'static',
+                    // position: 'relative',
+                    // height: '100%',
                 }}
             >
                 <LogoLink />
