@@ -13,3 +13,10 @@ export type MovieItem = {
     vote_average: number;
     vote_count: number;
 };
+
+export type QueryParamsStateType = {
+    genresSelected: string[];
+    releaseYearSelected: string | null;
+    minRatingSelected: string | null;
+    maxRatingSelected: string | null;
+};

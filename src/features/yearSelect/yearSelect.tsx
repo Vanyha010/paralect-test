@@ -1,12 +1,25 @@
 import { Select } from '@mantine/core';
 import { useDispatch } from 'react-redux';
-import { useState } from 'react';
+import { UseFormReturnType } from '@mantine/form';
 import ArrowDown from '../../shared/UI/arrows/arrowDown/arrowDown';
+import styles from './yearselect.module.css';
+import { QueryParamsStateType } from '../../shared/types/types';
 
-function YearSelect() {
-    const [isOpened, setIsOpened] = useState(false);
+const oldestMovieMade = 1887;
+
+type PropsType = {
+    isOpened: boolean;
+    setIsOpened: React.Dispatch<React.SetStateAction<boolean>>;
+    form: UseFormReturnType<
+        QueryParamsStateType,
+        (values: QueryParamsStateType) => QueryParamsStateType
+    >;
+};
+
+function YearSelect(props: PropsType) {
+    const { isOpened, setIsOpened, form } = props;
     const dispatch = useDispatch();
-    const oldestMovieMade = 1887;
+
     const currentYear = new Date().getFullYear();
     const yearsArray = [];
 
@@ -15,6 +28,7 @@ function YearSelect() {
     }
 
     const setSelectedYear = (year: string | null) => {
+        form.setValues({ releaseYearSelected: year || '' });
         const action = {
             type: 'SET_YEAR',
             payload: year || '',
@@ -31,10 +45,12 @@ function YearSelect() {
         <Select
             label="Release year"
             placeholder="Select release year"
+            value={form.getValues().releaseYearSelected}
             data={yearsArray}
             onChange={(e) => handleChange(e)}
             onClick={() => setIsOpened(!isOpened)}
             rightSection={<ArrowDown isOpened={isOpened} />}
+            className={styles.yearSelect}
         />
     );
 }

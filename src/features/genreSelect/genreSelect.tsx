@@ -1,19 +1,29 @@
 import { MultiSelect } from '@mantine/core';
 import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
+import { UseFormReturnType } from '@mantine/form';
 import { IRootState } from '../../app/services/store/store';
 import ArrowDown from '../../shared/UI/arrows/arrowDown/arrowDown';
 import styles from './genreselect.module.css';
+import { QueryParamsStateType } from '../../shared/types/types';
 
 type MultiSelectDataProp = {
     value: string;
     label: string;
 };
 
-function GenreSelect() {
+type PropsType = {
+    isOpened: boolean;
+    setIsOpened: React.Dispatch<React.SetStateAction<boolean>>;
+    form: UseFormReturnType<
+        QueryParamsStateType,
+        (values: QueryParamsStateType) => QueryParamsStateType
+    >;
+};
+
+function GenreSelect(props: PropsType) {
     const dispatch = useDispatch();
     const genresMap = useSelector((state: IRootState) => state.genresList?.genresMap.genres);
-    const [isOpened, setIsOpened] = useState(false);
+    const { isOpened, setIsOpened, form } = props;
 
     const genresNames: MultiSelectDataProp[] = [];
     if (Array.isArray(genresMap)) {
@@ -27,6 +37,7 @@ function GenreSelect() {
     }
 
     const setSelectedGenres = (genres: string[]) => {
+        form.setValues({ genresSelected: genres });
         const action = {
             type: 'SET_GENRES',
             payload: genres,
@@ -39,11 +50,11 @@ function GenreSelect() {
             label="Genres"
             placeholder="Select genres"
             data={genresNames}
-            // value={genre}
+            value={form.getValues().genresSelected}
             onChange={(e) => setSelectedGenres(e)}
             onClick={() => setIsOpened(!isOpened)}
             rightSection={<ArrowDown isOpened={isOpened} />}
-            className={styles.option}
+            className={styles.genreSelect}
         />
     );
 }

@@ -1,0 +1,17 @@
+.resetQueryButton {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--grey-600);
+    background-color: transparent;
+    cursor: pointer;
+    padding: 0;
+    min-width: 81px;
+    border: none;
+    height: 20px;
+    align-self: flex-end;
+    margin-bottom: 10px
+}
+
+.active {
+    color: var(--purple-500);
+}

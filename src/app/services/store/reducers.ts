@@ -1,3 +1,4 @@
+import { QueryParamsStateType } from '../../../shared/types/types';
 import requestBuilder from '../requestBuilder';
 
 export type GenreType = {
@@ -32,13 +33,6 @@ export const genreListReducer = (
         default:
             return state;
     }
-};
-
-type QueryParamsStateType = {
-    genresSelected: string[];
-    releaseYearSelected: string;
-    minRatingSelected: string;
-    maxRatingSelected: string;
 };
 
 const initialQueryParamsState: QueryParamsStateType = {
@@ -77,6 +71,10 @@ export const queryParamsReducer = (
             return {
                 ...state,
                 maxRatingSelected: action.payload,
+            };
+        case 'CLEAR_QUERY':
+            return {
+                ...initialQueryParamsState,
             };
         default:
             return state;

@@ -1,4 +1,10 @@
-.option [data-expanded] {
+.genreSelect [data-expanded] {
     border-color: var(--purple-500);
     font-weight: 500;
+}
+
+.genreSelect {
+    width: 100%;
+    flex-grow: 1;
+    align-self: flex-end;
 }

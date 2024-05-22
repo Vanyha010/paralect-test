@@ -7,3 +7,9 @@
 .mantine-MultiSelect-input:focus-within {
     border-color: var(--purple-500);
 }
+
+.mantine-MultiSelect-option:hover,
+.mantine-Select-option:hover {
+    background-color: var(--purple-500);
+    color: white;
+}
