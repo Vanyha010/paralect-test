@@ -1,0 +1,4 @@
+.option [data-expanded] {
+    border-color: var(--purple-500);
+    font-weight: 500;
+}

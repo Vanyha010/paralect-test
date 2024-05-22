@@ -14,3 +14,9 @@
     --black: #232134;
     --white: #ffffff;
 }
+
+.mantine-Select-wrapper {
+    & input:focus {
+        border-color: var(--purple-500);
+    }
+}

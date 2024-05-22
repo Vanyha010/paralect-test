@@ -1,0 +1,9 @@
+.mantine-Select-wrapper {
+    & input:focus {
+        border-color: var(--purple-500);
+    }
+}
+
+.mantine-MultiSelect-input:focus-within {
+    border-color: var(--purple-500);
+}

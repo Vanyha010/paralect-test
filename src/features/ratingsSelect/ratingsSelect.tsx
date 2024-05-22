@@ -1,7 +1,7 @@
 import { Select } from '@mantine/core';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import ArrowDown from '../../shared/UI/arrowDown/arrowDown';
+import ArrowUpDown from '../../shared/UI/arrows/arrowUpDown/arrowUpDown';
 
 function RatingsSelect() {
     const dispatch = useDispatch();
@@ -52,13 +52,13 @@ function RatingsSelect() {
                 placeholder="From"
                 data={getSelectRange('lower')}
                 onChange={(e) => handleMinSelect(e)}
-                rightSection={<ArrowDown />}
+                rightSection={<ArrowUpDown />}
             />
             <Select
                 placeholder="To"
                 data={getSelectRange('higher')}
                 onChange={(e) => handleMaxSelect(e)}
-                rightSection={<ArrowDown />}
+                rightSection={<ArrowUpDown />}
             />
         </div>
     );

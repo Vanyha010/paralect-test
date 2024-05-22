@@ -1,7 +1,9 @@
 import { MultiSelect } from '@mantine/core';
 import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
 import { IRootState } from '../../app/services/store/store';
-import ArrowDown from '../../shared/UI/arrowDown/arrowDown';
+import ArrowDown from '../../shared/UI/arrows/arrowDown/arrowDown';
+import styles from './genreselect.module.css';
 
 type MultiSelectDataProp = {
     value: string;
@@ -11,6 +13,7 @@ type MultiSelectDataProp = {
 function GenreSelect() {
     const dispatch = useDispatch();
     const genresMap = useSelector((state: IRootState) => state.genresList?.genresMap.genres);
+    const [isOpened, setIsOpened] = useState(false);
 
     const genresNames: MultiSelectDataProp[] = [];
     if (Array.isArray(genresMap)) {
@@ -38,7 +41,9 @@ function GenreSelect() {
             data={genresNames}
             // value={genre}
             onChange={(e) => setSelectedGenres(e)}
-            rightSection={<ArrowDown />}
+            rightSection={<ArrowDown isOpened={isOpened} />}
+            className={styles.option}
+            onClick={() => setIsOpened(!isOpened)}
         />
     );
 }

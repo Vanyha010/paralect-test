@@ -1,8 +1,10 @@
 import { Select } from '@mantine/core';
 import { useDispatch } from 'react-redux';
-import ArrowDown from '../../shared/UI/arrowDown/arrowDown';
+import { useState } from 'react';
+import ArrowDown from '../../shared/UI/arrows/arrowDown/arrowDown';
 
 function YearSelect() {
+    const [isOpened, setIsOpened] = useState(false);
     const dispatch = useDispatch();
     const oldestMovieMade = 1887;
     const currentYear = new Date().getFullYear();
@@ -20,13 +22,19 @@ function YearSelect() {
         dispatch(action);
     };
 
+    const handleChange = (e: string | null) => {
+        setIsOpened(!isOpened);
+        setSelectedYear(e);
+    };
+
     return (
         <Select
             label="Release year"
             placeholder="Select release year"
             data={yearsArray}
-            onChange={(e) => setSelectedYear(e)}
-            rightSection={<ArrowDown />}
+            onChange={(e) => handleChange(e)}
+            onClick={() => setIsOpened(!isOpened)}
+            rightSection={<ArrowDown isOpened={isOpened} />}
         />
     );
 }
