@@ -41,9 +41,9 @@ function GenreSelect() {
             data={genresNames}
             // value={genre}
             onChange={(e) => setSelectedGenres(e)}
+            onClick={() => setIsOpened(!isOpened)}
             rightSection={<ArrowDown isOpened={isOpened} />}
             className={styles.option}
-            onClick={() => setIsOpened(!isOpened)}
         />
     );
 }

@@ -1,7 +1,9 @@
 .arrowDown {
-    transition: transform 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    stroke: var(--grey-500);
 }
 
 .opened {
     transform: rotate(180deg);
+    stroke: var(--purple-500);
 }
