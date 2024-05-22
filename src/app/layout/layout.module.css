@@ -4,7 +4,9 @@
     max-width: 1440px;
     min-height: 100vh;
     display: flex;
+    justify-content: center;
     margin: 0 auto;
+    position: relative;
 }
 
 .link {
@@ -23,7 +25,10 @@
     background-color: var(--purple-200);
 }
 
-.test {
+/* .test {
     height: 100% !important;
     position: relative;
-}
+    background-color: red;
+    top: 0;
+    left: 100px;
+} */

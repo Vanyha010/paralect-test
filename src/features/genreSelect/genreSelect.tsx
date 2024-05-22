@@ -1,4 +1,4 @@
-import { MultiSelect } from '@mantine/core';
+import { MultiSelect, Title } from '@mantine/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { UseFormReturnType } from '@mantine/form';
 import { IRootState } from '../../app/services/store/store';
@@ -47,8 +47,8 @@ function GenreSelect(props: PropsType) {
 
     return (
         <MultiSelect
-            label="Genres"
-            placeholder="Select genres"
+            label={<Title order={5}>Genres</Title>}
+            placeholder="Select genre"
             data={genresNames}
             value={form.getValues().genresSelected}
             onChange={(e) => setSelectedGenres(e)}

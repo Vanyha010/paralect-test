@@ -1,10 +1,7 @@
-.main {
-    padding: 0 130px 0 330px !important;
+/* .main {
+    max-width: 1440px;
+    padding: 45px 90px 0 90px !important;
     background-color: var(--grey-100);
-}
+} */
 
-@media screen and (max-width: 1300px) {
-    .main {
-        padding: 0 40px 0 320px !important;
-    }
-}
+

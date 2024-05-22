@@ -1,6 +1,8 @@
 .ratingsSelect {
+    align-self: start;
     width: 100%;
     flex-grow: 1;
     display: flex;
     align-items: flex-end;
+    gap: 8px;
 }

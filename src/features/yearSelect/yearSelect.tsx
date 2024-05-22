@@ -1,4 +1,4 @@
-import { Select } from '@mantine/core';
+import { Select, Title } from '@mantine/core';
 import { useDispatch } from 'react-redux';
 import { UseFormReturnType } from '@mantine/form';
 import ArrowDown from '../../shared/UI/arrows/arrowDown/arrowDown';
@@ -43,7 +43,7 @@ function YearSelect(props: PropsType) {
 
     return (
         <Select
-            label="Release year"
+            label={<Title order={5}>Release year</Title>}
             placeholder="Select release year"
             value={form.getValues().releaseYearSelected}
             data={yearsArray}

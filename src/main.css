@@ -1,15 +1,16 @@
-.mantine-Select-wrapper {
-    & input:focus {
-        border-color: var(--purple-500);
+@import './shared/styles/inputs.css';
+
+.mantine-AppShell-main {
+    padding: 45px 90px 0 90px;
+    background-color: var(--grey-100);
+}
+
+.mantine-Title-root {
+    margin-bottom: 10px;
+}
+
+@media screen and (max-width: 1300px) {
+    .mantine-AppShell-main {
+        padding: 45px 40px 0 40px !important;
     }
-}
-
-.mantine-MultiSelect-input:focus-within {
-    border-color: var(--purple-500);
-}
-
-.mantine-MultiSelect-option:hover,
-.mantine-Select-option:hover {
-    background-color: var(--purple-500);
-    color: white;
 }

@@ -8,8 +8,8 @@
     min-width: 81px;
     border: none;
     height: 20px;
-    align-self: flex-end;
-    margin-bottom: 10px
+    align-self: flex-start;
+    margin-top: 43px;
 }
 
 .active {

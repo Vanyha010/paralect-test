@@ -1,0 +1,21 @@
+.mantine-Select-wrapper {
+  & input:focus {
+      border-color: var(--purple-500);
+  }
+}
+
+.mantine-MultiSelect-input:focus-within {
+  border-color: var(--purple-500);
+}
+
+.mantine-Select-input,
+.mantine-MultiSelect-input{
+  min-height: 40px;
+  border-radius: 8px;
+}
+
+.mantine-MultiSelect-option:hover,
+.mantine-Select-option:hover {
+  background-color: var(--purple-500);
+  color: white;
+}

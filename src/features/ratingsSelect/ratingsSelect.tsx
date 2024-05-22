@@ -1,4 +1,4 @@
-import { Select } from '@mantine/core';
+import { Select, Title } from '@mantine/core';
 import { useDispatch } from 'react-redux';
 import { UseFormReturnType } from '@mantine/form';
 import { useState } from 'react';
@@ -64,7 +64,7 @@ function RatingsSelect(props: PropsType) {
     return (
         <div className={styles.ratingsSelect}>
             <Select
-                label="Ratings"
+                label={<Title order={5}>Ratings</Title>}
                 placeholder="From"
                 data={getSelectRange('lower')}
                 value={form.getValues().minRatingSelected}

@@ -16,8 +16,8 @@ function Layout() {
                     minWidth: 280,
                     width: 280,
                     padding: 25,
-                    // position: 'relative',
-                    // height: '100%',
+                    position: 'static',
+                    height: 'inherit',
                 }}
             >
                 <LogoLink />
