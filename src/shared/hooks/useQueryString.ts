@@ -8,6 +8,7 @@ const useQueryString = () => {
     const queryParamsState = useSelector((state: IRootState) => state.queryParams);
     const { genresSelected, releaseYearSelected, minRatingSelected, maxRatingSelected } =
         queryParamsState;
+    const sortMethod = useSelector((state: IRootState) => state.sortMethod.sortMethod);
 
     useEffect(() => {
         let newQueryString = '';
@@ -27,9 +28,13 @@ const useQueryString = () => {
             newQueryString += `&vote_average.lte=${maxRatingSelected}`;
         }
 
+        if (typeof sortMethod === 'string' && sortMethod.length > 0) {
+            newQueryString += `&sort_by=${sortMethod}`;
+        }
+
         setQueryString(newQueryString);
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [queryParamsState]);
+    }, [queryParamsState, sortMethod]);
 
     return queryString;
 };

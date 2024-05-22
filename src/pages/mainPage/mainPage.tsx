@@ -6,6 +6,7 @@ import styles from './mainpage.module.css';
 import requestBuilder from '../../app/services/requestBuilder';
 import useQueryString from '../../shared/hooks/useQueryString';
 import MovieSelectBar from '../../widgets/movieSelectBar/movieSelectBar';
+import SortSelect from '../../features/sortSelect/sortSelect';
 
 type MovieListType = {
     page: number;
@@ -33,6 +34,7 @@ function MainPage() {
                 Movies
             </Title>
             <MovieSelectBar />
+            <SortSelect />
             <MovieCardList props={moviesList} />
         </AppShellMain>
     );

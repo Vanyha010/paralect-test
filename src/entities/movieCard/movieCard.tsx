@@ -19,7 +19,7 @@ function MovieCard({ props }: { props: MovieItem }) {
 
     const getGenresNames = () => {
         // This function sets 3 (or less) genres in the card and converts genre Id's into understandable names
-        if (Array.isArray(genresMap)) {
+        if (Array.isArray(genresMap) && Array.isArray(props.genre_ids)) {
             const arr: string[] = [];
             props.genre_ids.forEach((id) => {
                 genresMap.forEach((item: GenreType) => {

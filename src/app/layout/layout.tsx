@@ -16,6 +16,7 @@ function Layout() {
                     minWidth: 280,
                     width: 280,
                     padding: 25,
+                    paddingTop: 35,
                     position: 'static',
                     height: 'inherit',
                 }}

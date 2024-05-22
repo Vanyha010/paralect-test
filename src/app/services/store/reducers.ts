@@ -80,3 +80,31 @@ export const queryParamsReducer = (
             return state;
     }
 };
+
+type SortMethodState = {
+    sortMethod: string;
+};
+
+const initialSortMethod: SortMethodState = {
+    sortMethod: '',
+};
+
+type SortMethodAction = {
+    type?: string;
+    payload?: string;
+};
+
+export const sortMethodReducer = (
+    state: SortMethodState = initialSortMethod,
+    action: SortMethodAction = {}
+) => {
+    switch (action.type) {
+        case 'SET_SORT_METHOD':
+            return {
+                ...state,
+                sortMethod: action.payload,
+            };
+        default:
+            return state;
+    }
+};

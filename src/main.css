@@ -1,12 +1,10 @@
 @import './shared/styles/inputs.css';
 
 .mantine-AppShell-main {
-    padding: 45px 90px 0 90px;
+    padding: 55px 90px 0 90px;
     background-color: var(--grey-100);
-}
-
-.mantine-Title-root {
-    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
 }
 
 @media screen and (max-width: 1300px) {
