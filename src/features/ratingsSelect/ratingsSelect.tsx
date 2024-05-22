@@ -5,13 +5,13 @@ import ArrowUpDown from '../../shared/UI/arrows/arrowUpDown/arrowUpDown';
 
 function RatingsSelect() {
     const dispatch = useDispatch();
-    const [minRating, setMinRating] = useState(1);
+    const [minRating, setMinRating] = useState(0);
     const [maxRating, setMaxRating] = useState(10);
 
     // This function disables option more than max selected for 'from' <select> and options less than min selected for 'to' <select>
     const getSelectRange = (type: 'lower' | 'higher') => {
         const data = [];
-        for (let i = 1; i <= 10; i += 1) {
+        for (let i = 0; i <= 10; i += 1) {
             const obj = {
                 value: i.toString(),
                 label: i.toString(),
