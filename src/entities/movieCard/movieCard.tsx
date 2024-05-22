@@ -2,7 +2,7 @@ import { Box, Image, Text, Title, useMantineTheme } from '@mantine/core';
 import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { MovieItem } from '../../shared/types/types';
-import altImg from '../../assets/noposter.svg';
+import noPoster from '../../assets/noposter.png';
 import starYellow from '../../assets/star-yellow.svg';
 import starNotRated from '../../assets/star-not-rated.svg';
 import styles from './moviecard.module.css';
@@ -42,8 +42,9 @@ function MovieCard({ props }: { props: MovieItem }) {
             <Box className={styles.movieCardContent}>
                 <Image
                     src={`${imgPath}${props.poster_path}`}
-                    fallbackSrc={altImg}
+                    fallbackSrc={noPoster}
                     className={styles.movieCardImage}
+                    fit="contain"
                     w={120}
                     h="100%"
                 />

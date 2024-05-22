@@ -18,14 +18,12 @@ const data = [
 function SortSelect() {
     const dispatch = useDispatch();
     const handleChange = (e: string | null) => {
-        console.log(e);
         const payload = e || '';
         const action = {
             type: 'SET_SORT_METHOD',
             payload,
         };
         dispatch(action);
-        console.log('test');
     };
 
     return (
