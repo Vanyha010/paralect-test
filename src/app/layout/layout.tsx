@@ -1,7 +1,7 @@
 import { AppShell, AppShellNavbar, Flex, useMantineTheme } from '@mantine/core';
 import { Link, Outlet } from 'react-router-dom';
 import styles from './layout.module.css';
-import LogoLink from '../../shared/logoLink/logoLink';
+import LogoLink from '../../shared/UI/logoLink/logoLink';
 
 function Layout() {
     const theme = useMantineTheme();

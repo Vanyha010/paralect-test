@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Box, Image, useMantineTheme } from '@mantine/core';
-import logo from '../../assets/logo.svg';
+import logo from '../../../assets/logo.svg';
 import styles from './logolink.module.css';
 
 function LogoLink() {

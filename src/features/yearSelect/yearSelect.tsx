@@ -1,5 +1,6 @@
 import { Select } from '@mantine/core';
 import { useDispatch } from 'react-redux';
+import ArrowDown from '../../shared/UI/arrowDown/arrowDown';
 
 function YearSelect() {
     const dispatch = useDispatch();
@@ -12,7 +13,6 @@ function YearSelect() {
     }
 
     const setSelectedYear = (year: string | null) => {
-        console.log('test');
         const action = {
             type: 'SET_YEAR',
             payload: year || '',
@@ -26,6 +26,7 @@ function YearSelect() {
             placeholder="Select release year"
             data={yearsArray}
             onChange={(e) => setSelectedYear(e)}
+            rightSection={<ArrowDown />}
         />
     );
 }

@@ -1,6 +1,7 @@
 import { MultiSelect } from '@mantine/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { IRootState } from '../../app/services/store/store';
+import ArrowDown from '../../shared/UI/arrowDown/arrowDown';
 
 type MultiSelectDataProp = {
     value: string;
@@ -37,6 +38,7 @@ function GenreSelect() {
             data={genresNames}
             // value={genre}
             onChange={(e) => setSelectedGenres(e)}
+            rightSection={<ArrowDown />}
         />
     );
 }
