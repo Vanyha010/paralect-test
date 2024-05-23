@@ -12,19 +12,25 @@ import MovieModalRating from '../movieModalRating/movieModalRating';
 
 const imgPath = 'http://image.tmdb.org/t/p/w500';
 
-function MovieCard({ props }: { props: MovieItem }) {
-    const [rated, setRated] = useState(false);
+type PropsType = {
+    data: MovieItem;
+    rating: number;
+};
+
+function MovieCard(props: PropsType) {
+    const { data, rating } = props;
+    const [rated, setRated] = useState(rating > 0);
     const [opened, { open, close }] = useDisclosure(false);
-    const releaseYear = new Date(props.release_date).getFullYear();
+    const releaseYear = new Date(data.release_date).getFullYear();
     const theme = useMantineTheme();
     const genresMap = useSelector((state: IRootState) => state.genresList?.genresMap.genres);
     const [genresNames, setGenreNames] = useState<string[]>([]);
 
     const getGenresNames = () => {
         // This function sets 3 (or less) genres in the card and converts genre Id's into understandable names
-        if (Array.isArray(genresMap) && Array.isArray(props.genre_ids)) {
+        if (Array.isArray(genresMap) && Array.isArray(data.genre_ids)) {
             const arr: string[] = [];
-            props.genre_ids.forEach((id) => {
+            data.genre_ids.forEach((id) => {
                 genresMap.forEach((item: GenreType) => {
                     if (item.id === id && arr.length < 3) {
                         arr.push(item.name);
@@ -44,7 +50,7 @@ function MovieCard({ props }: { props: MovieItem }) {
         <Box className={styles.movieCard}>
             <Box className={styles.movieCardContent}>
                 <Image
-                    src={`${imgPath}${props.poster_path}`}
+                    src={`${imgPath}${data.poster_path}`}
                     fallbackSrc={noPoster}
                     className={styles.movieCardImage}
                     fit="contain"
@@ -62,13 +68,13 @@ function MovieCard({ props }: { props: MovieItem }) {
                                 color: theme.other.purple500,
                             }}
                         >
-                            {props.original_title}
+                            {data.original_title}
                         </Title>
                         <Text>{releaseYear || 'Unknown year'}</Text>
                         <Box className={styles.rating}>
                             <img src={starYellow} alt="Rating" />
-                            <Text fw={600}>{props.vote_average}</Text>
-                            <Text style={{ color: theme.other.grey600 }}>({props.vote_count})</Text>
+                            <Text fw={600}>{data.vote_average}</Text>
+                            <Text style={{ color: theme.other.grey600 }}>({data.vote_count})</Text>
                         </Box>
                     </Box>
                     <Box className={styles.movieCardGenres}>
@@ -78,13 +84,14 @@ function MovieCard({ props }: { props: MovieItem }) {
                 </Box>
             </Box>
             <MovieModalRating
-                movieName={props.original_title}
-                movieId={props.id}
+                movieName={data.original_title}
+                movieId={data.id}
                 opened={opened}
                 close={close}
                 openModal={open}
                 rated={rated}
                 setRated={setRated}
+                rating={rating}
             />
         </Box>
     );

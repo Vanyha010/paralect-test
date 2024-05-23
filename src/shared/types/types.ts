@@ -20,3 +20,8 @@ export type QueryParamsStateType = {
     minRatingSelected: string | null;
     maxRatingSelected: string | null;
 };
+
+export type MovieRated = {
+    id: number;
+    rating: number;
+};

@@ -1,5 +1,15 @@
+.movieModalRating {
+    display: flex;
+    gap: 3px
+}
+
 .buttonBlock {
     margin-top: 20px;
     display: flex;
     gap: 10px;
+}
+
+.ratingValue {
+    font-size: 16px;
+    font-weight: 600;
 }

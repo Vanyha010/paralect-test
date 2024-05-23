@@ -1,7 +1,4 @@
-type MovieRated = {
-    id: number;
-    rating: number;
-};
+import { MovieRated } from '../../shared/types/types';
 
 function addMovieToStorage(id: number, rating: number) {
     const ratedMovies = localStorage.getItem('ratedMovies');
@@ -38,16 +35,9 @@ function getMovieStorage() {
 function removeMovieFromStorage(id: number) {
     const ratedMovies = localStorage.getItem('ratedMovies');
     if (ratedMovies) {
-        const ratedMoviesList = JSON.parse(ratedMovies);
-        const movieIndex = ratedMoviesList.map((item: MovieRated, index: number) => {
-            if (item.id === id) {
-                return index;
-            }
-
-            return null;
-        });
-        if (movieIndex) {
-            console.log(movieIndex);
+        const ratedMoviesList: MovieRated[] = JSON.parse(ratedMovies);
+        const movieIndex = ratedMoviesList.map((item) => item.id).indexOf(id);
+        if (movieIndex !== -1) {
             ratedMoviesList.splice(movieIndex, 1);
             localStorage.setItem('ratedMovies', JSON.stringify(ratedMoviesList));
         }

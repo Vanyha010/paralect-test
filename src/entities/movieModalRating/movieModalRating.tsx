@@ -14,11 +14,12 @@ type PropsType = {
     close: () => void;
     rated: boolean;
     setRated: React.Dispatch<React.SetStateAction<boolean>>;
+    rating: number;
 };
 
 function MovieModalRating(props: PropsType) {
-    const { movieName, movieId, opened, openModal, close, rated, setRated } = props;
-    const [value, setValue] = useState(0);
+    const { movieName, movieId, opened, openModal, close, rated, setRated, rating } = props;
+    const [value, setValue] = useState(rating);
 
     const removeMovie = () => {
         removeMovieFromStorage(movieId);
@@ -35,7 +36,7 @@ function MovieModalRating(props: PropsType) {
     };
 
     return (
-        <div>
+        <div className={styles.movieModalRating}>
             <Modal title="Your rating" opened={opened} onClose={close} centered size="sm">
                 <Title order={5}>{movieName}</Title>
                 <Rating value={value} onChange={setValue} count={10} size="xl" />
@@ -45,6 +46,7 @@ function MovieModalRating(props: PropsType) {
                 </div>
             </Modal>
             <StarIcon active={rated} click={openModal} />
+            <div className={styles.ratingValue}>{rated && value}</div>
         </div>
     );
 }

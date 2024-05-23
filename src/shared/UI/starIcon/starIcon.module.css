@@ -4,6 +4,6 @@
 }
 
 .notRated {
-  fill: var(--grey-300);
-  stroke: var(--grey-300);
+    fill: var(--grey-300);
+    stroke: var(--grey-300);
 }
