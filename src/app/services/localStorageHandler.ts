@@ -4,7 +4,6 @@ function addMovieToStorage(id: number, rating: number) {
     const ratedMovies = localStorage.getItem('ratedMovies');
     if (ratedMovies) {
         const ratedMoviesList = JSON.parse(ratedMovies);
-        console.log(ratedMoviesList);
         let movie = ratedMoviesList.find((item: MovieRated) => item.id === id);
         if (movie) {
             movie.rating = rating;

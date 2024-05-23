@@ -1,7 +1,7 @@
 import { AppShellMain, Title } from '@mantine/core';
 import { useEffect, useState } from 'react';
 import { MovieItem } from '../../shared/types/types';
-import MovieCardList from '../../widgets/movieCardList/movieCardList';
+import MovieCardList from '../../widgets/moviesList/moviesList';
 import styles from './mainpage.module.css';
 import requestBuilder from '../../app/services/requestBuilder';
 import useQueryString from '../../shared/hooks/useQueryString';

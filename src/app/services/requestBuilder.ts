@@ -23,6 +23,14 @@ const requestBuilder = {
 
         return result;
     },
+
+    async getMovieById(id: number) {
+        const data = await axios.get(`${this.host}/movie/${id}`, this.options);
+
+        const result = await data.data;
+
+        return result;
+    },
 };
 
 export default requestBuilder;

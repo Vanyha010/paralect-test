@@ -1,9 +1,9 @@
 @import './shared/styles/inputs.css';
 @import './shared/styles/modal.css';
+@import './shared/styles/moviesList.css';
 
 .mantine-AppShell-main {
-    min-width: 980px;
-    /* box-sizing: border-box; */
+    width: 100%;
     padding: 55px 90px 0 90px;
     background-color: var(--grey-100);
     display: flex;
