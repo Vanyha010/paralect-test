@@ -1,6 +1,7 @@
 import { Box, Image, Text, Title, useMantineTheme } from '@mantine/core';
 import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
+import { useDisclosure } from '@mantine/hooks';
 import { MovieItem } from '../../shared/types/types';
 import noPoster from '../../assets/noposter.png';
 import starYellow from '../../assets/star-yellow.svg';
@@ -8,10 +9,12 @@ import starNotRated from '../../assets/star-not-rated.svg';
 import styles from './moviecard.module.css';
 import { IRootState } from '../../app/services/store/store';
 import { GenreType } from '../../app/services/store/reducers';
+import MovieModalRating from '../movieModalRating/movieModalRating';
 
 const imgPath = 'http://image.tmdb.org/t/p/w500';
 
 function MovieCard({ props }: { props: MovieItem }) {
+    const [opened, { open, close }] = useDisclosure(false);
     const releaseYear = new Date(props.release_date).getFullYear();
     const theme = useMantineTheme();
     const genresMap = useSelector((state: IRootState) => state.genresList?.genresMap.genres);
@@ -75,7 +78,8 @@ function MovieCard({ props }: { props: MovieItem }) {
                 </Box>
             </Box>
             <Box>
-                <img src={starNotRated} alt="Rate" />
+                <MovieModalRating movieName={props.original_title} opened={opened} close={close} />
+                <Image src={starNotRated} alt="Rate" onClick={open} />
             </Box>
         </Box>
     );

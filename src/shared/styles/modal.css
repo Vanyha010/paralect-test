@@ -1,0 +1,17 @@
+.mantine-Modal-header {
+    border-bottom: 1px solid var(--grey-200);
+}
+
+.mantine-Modal-content {
+    border-radius: 8px;
+}
+
+.mantine-Modal-body {
+    padding-top: 10px;
+}
+
+.mantine-Rating-root {
+    width: 100% !important;
+    justify-content: space-between;
+    margin-top: 10px;
+}

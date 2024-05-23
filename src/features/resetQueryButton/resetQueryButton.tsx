@@ -3,6 +3,7 @@ import { UseFormReturnType } from '@mantine/form';
 import useQueryString from '../../shared/hooks/useQueryString';
 import styles from './resetquerybutton.module.css';
 import { QueryParamsStateType } from '../../shared/types/types';
+import TextButton from '../../shared/UI/buttons/textButton/textButton';
 
 type PropsType = {
     setGenreOpened: React.Dispatch<React.SetStateAction<boolean>>;
@@ -32,13 +33,17 @@ function ResetQueryButton(props: PropsType) {
     };
 
     return (
-        <button
-            disabled={!isQueryString}
-            className={[styles.resetQueryButton, isQueryString ? styles.active : ''].join(' ')}
-            onClick={resetFilters}
-        >
-            Reset filters
-        </button>
+        <div className={styles.resetQueryButton}>
+            <TextButton text="Reset filters" click={resetFilters} disabled={!isQueryString} />
+        </div>
+
+        // <button
+        //     disabled={!isQueryString}
+        //     className={[styles.resetQueryButton, isQueryString ? styles.active : ''].join(' ')}
+        //     onClick={resetFilters}
+        // >
+        //     Reset filters
+        // </button>
     );
 }
 

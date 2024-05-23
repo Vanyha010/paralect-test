@@ -1,4 +1,5 @@
 @import './shared/styles/inputs.css';
+@import './shared/styles/modal.css';
 
 .mantine-AppShell-main {
     padding: 55px 90px 0 90px;

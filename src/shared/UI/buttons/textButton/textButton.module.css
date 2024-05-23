@@ -1,0 +1,13 @@
+.textButton {
+    color: var(--purple-500);
+    background-color: transparent;
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.textButton:disabled {
+    color: var(--grey-600);
+}
