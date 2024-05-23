@@ -1,10 +1,5 @@
-import { QueryParamsStateType } from '../../../shared/types/types';
+import { GenreType, QueryParamsStateType } from '../../../shared/types/types';
 import requestBuilder from '../requestBuilder';
-
-export type GenreType = {
-    id: number;
-    name: string;
-};
 
 type GenresStateType = {
     genresMap: {
@@ -17,9 +12,22 @@ type GenresActionType = {
     payload?: GenresStateType;
 };
 
+const test = async () => {
+    try {
+        const data = await requestBuilder.getGenresNames();
+
+        return data;
+    } catch {
+        return {
+            genres: [],
+        };
+    }
+};
+
 // This is map of all movie genres and its Ids
 const initialGenreState: GenresStateType = {
-    genresMap: await requestBuilder.getGenresNames(),
+    genresMap: await test(),
+    // genresMap: await requestBuilder.getGenresNames(),
 };
 
 // This reducer hass no purpose, it exists in order to let create a state object in store
@@ -28,8 +36,11 @@ export const genreListReducer = (
     action: GenresActionType = {}
 ) => {
     switch (action.type) {
-        case 'NEVER_WILL_BE_CALLED':
-            return action.payload;
+        case 'SET_GENRES_LIST':
+            return {
+                ...state,
+                genres: action.payload,
+            };
         default:
             return state;
     }

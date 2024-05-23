@@ -2,18 +2,17 @@ import { Box, Image, Text, Title, useMantineTheme } from '@mantine/core';
 import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { useDisclosure } from '@mantine/hooks';
-import { MovieItem } from '../../shared/types/types';
+import { GenreType, MovieFullItem, MovieItem } from '../../shared/types/types';
 import noPoster from '../../assets/noposter.png';
 import starYellow from '../../assets/star-yellow.svg';
 import styles from './moviecard.module.css';
 import { IRootState } from '../../app/services/store/store';
-import { GenreType } from '../../app/services/store/reducers';
 import MovieModalRating from '../movieModalRating/movieModalRating';
 
 const imgPath = 'http://image.tmdb.org/t/p/w500';
 
 type PropsType = {
-    data: MovieItem;
+    data: MovieItem | MovieFullItem;
     rating: number;
 };
 
@@ -28,8 +27,8 @@ function MovieCard(props: PropsType) {
 
     const getGenresNames = () => {
         // This function sets 3 (or less) genres in the card and converts genre Id's into understandable names
-        if (Array.isArray(genresMap) && Array.isArray(data.genre_ids)) {
-            const arr: string[] = [];
+        const arr: string[] = [];
+        if (Array.isArray(genresMap) && 'genre_ids' in data) {
             data.genre_ids.forEach((id) => {
                 genresMap.forEach((item: GenreType) => {
                     if (item.id === id && arr.length < 3) {
@@ -37,14 +36,19 @@ function MovieCard(props: PropsType) {
                     }
                 });
             });
-            setGenreNames(arr);
+        } else if ('genres' in data) {
+            data.genres.forEach((item) => {
+                arr.push(item.name);
+            });
         }
+
+        setGenreNames(arr);
     };
 
     useEffect(() => {
         getGenresNames();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [genresMap]);
 
     return (
         <Box className={styles.movieCard}>

@@ -21,10 +21,15 @@ type Collection = {
     poster_path: string;
 };
 
+export type GenreType = {
+    id: number;
+    name: string;
+};
+
 export type MovieFullItem = {
     adult: boolean;
     backdrop_path: string;
-    genre_ids: number[];
+    genres: GenreType[];
     id: number;
     original_title: string;
     overview: string;
