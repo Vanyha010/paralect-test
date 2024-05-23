@@ -1,0 +1,9 @@
+.rated {
+    fill: var(--purple-500);
+    stroke: var(--purple-500);
+}
+
+.notRated {
+  fill: var(--grey-300);
+  stroke: var(--grey-300);
+}

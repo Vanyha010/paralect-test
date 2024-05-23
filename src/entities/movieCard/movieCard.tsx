@@ -5,7 +5,6 @@ import { useDisclosure } from '@mantine/hooks';
 import { MovieItem } from '../../shared/types/types';
 import noPoster from '../../assets/noposter.png';
 import starYellow from '../../assets/star-yellow.svg';
-import starNotRated from '../../assets/star-not-rated.svg';
 import styles from './moviecard.module.css';
 import { IRootState } from '../../app/services/store/store';
 import { GenreType } from '../../app/services/store/reducers';
@@ -14,6 +13,7 @@ import MovieModalRating from '../movieModalRating/movieModalRating';
 const imgPath = 'http://image.tmdb.org/t/p/w500';
 
 function MovieCard({ props }: { props: MovieItem }) {
+    const [rated, setRated] = useState(false);
     const [opened, { open, close }] = useDisclosure(false);
     const releaseYear = new Date(props.release_date).getFullYear();
     const theme = useMantineTheme();
@@ -77,10 +77,15 @@ function MovieCard({ props }: { props: MovieItem }) {
                     </Box>
                 </Box>
             </Box>
-            <Box>
-                <MovieModalRating movieName={props.original_title} opened={opened} close={close} />
-                <Image src={starNotRated} alt="Rate" onClick={open} />
-            </Box>
+            <MovieModalRating
+                movieName={props.original_title}
+                movieId={props.id}
+                opened={opened}
+                close={close}
+                openModal={open}
+                rated={rated}
+                setRated={setRated}
+            />
         </Box>
     );
 }
