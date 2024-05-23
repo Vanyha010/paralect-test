@@ -2,6 +2,8 @@
 @import './shared/styles/modal.css';
 
 .mantine-AppShell-main {
+    min-width: 980px;
+    /* box-sizing: border-box; */
     padding: 55px 90px 0 90px;
     background-color: var(--grey-100);
     display: flex;

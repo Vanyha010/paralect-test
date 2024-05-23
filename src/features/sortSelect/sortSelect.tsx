@@ -1,6 +1,8 @@
 import { Select, Title } from '@mantine/core';
 import { useDispatch } from 'react-redux';
+import { useState } from 'react';
 import styles from './sortselect.module.css';
+import ArrowDown from '../../shared/UI/arrows/arrowDown/arrowDown';
 
 const data = [
     { label: 'Most popular', value: 'popularity.desc' },
@@ -16,6 +18,7 @@ const data = [
 ];
 
 function SortSelect() {
+    const [isOpened, setIsOpened] = useState(false);
     const dispatch = useDispatch();
     const handleChange = (e: string | null) => {
         const payload = e || '';
@@ -32,6 +35,9 @@ function SortSelect() {
             className={styles.sortSelect}
             data={data}
             onChange={(e) => handleChange(e)}
+            onDropdownOpen={() => setIsOpened(true)}
+            onDropdownClose={() => setIsOpened(false)}
+            rightSection={<ArrowDown isOpened={isOpened} />}
         />
     );
 }

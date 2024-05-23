@@ -1,11 +1,12 @@
 .arrowDown {
     transition: all 0.3s ease-in-out;
     stroke: var(--grey-500);
-    transform: scale(1.5);
+    /* transform: scale(1.5); */
     margin-right: 10px;
 }
 
 .opened {
+    /* transform: scale(1.5); */
     transform: rotate(180deg);
     stroke: var(--purple-500);
 }

@@ -23,10 +23,10 @@ function Layout() {
             >
                 <LogoLink />
                 <Flex gap={12} direction="column" mt={80}>
-                    <Link to="/" className={styles.link}>
+                    <Link to="/movies" className={styles.link}>
                         Movies
                     </Link>
-                    <Link to="/" className={styles.link}>
+                    <Link to="/rated" className={styles.link}>
                         Rated movies
                     </Link>
                 </Flex>

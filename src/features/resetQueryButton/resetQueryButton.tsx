@@ -6,8 +6,8 @@ import { QueryParamsStateType } from '../../shared/types/types';
 import TextButton from '../../shared/UI/buttons/textButton/textButton';
 
 type PropsType = {
-    setGenreOpened: React.Dispatch<React.SetStateAction<boolean>>;
-    setYearOpened: React.Dispatch<React.SetStateAction<boolean>>;
+    // setGenreOpened: React.Dispatch<React.SetStateAction<boolean>>;
+    // setYearOpened: React.Dispatch<React.SetStateAction<boolean>>;
     form: UseFormReturnType<
         QueryParamsStateType,
         (values: QueryParamsStateType) => QueryParamsStateType
@@ -15,7 +15,8 @@ type PropsType = {
 };
 
 function ResetQueryButton(props: PropsType) {
-    const { setGenreOpened, setYearOpened, form } = props;
+    // const { setGenreOpened, setYearOpened, form } = props;
+    const { form } = props;
     const dispatch = useDispatch();
     const queryString = useQueryString();
     const isQueryString = Boolean(queryString);
@@ -28,8 +29,8 @@ function ResetQueryButton(props: PropsType) {
             maxRatingSelected: null,
         });
         dispatch({ type: 'CLEAR_QUERY' });
-        setGenreOpened(false);
-        setYearOpened(false);
+        // setGenreOpened(false);
+        // setYearOpened(false);
     };
 
     return (
