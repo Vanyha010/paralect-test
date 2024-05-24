@@ -12,8 +12,8 @@
 }
 
 .movieCardImage {
-  max-height: 352px;
-  min-width: 250px;
+    max-height: 352px;
+    min-width: 250px;
 }
 
 .movieCardContent {
