@@ -26,6 +26,18 @@ export type GenreType = {
     name: string;
 };
 
+export type Video = {
+    id: string;
+    key: string;
+};
+
+export type Company = {
+    id: number;
+    logo_path: string | null;
+    name: string;
+    origin_country: string;
+};
+
 export type MovieFullData = {
     adult: boolean;
     backdrop_path: string;
@@ -38,6 +50,10 @@ export type MovieFullData = {
     release_date: string;
     title: string;
     video: boolean;
+    videos: {
+        results: Video[];
+    };
+    production_companies: Company[];
     vote_average: number;
     vote_count: number;
     belongs_to_collection: Collection | null;

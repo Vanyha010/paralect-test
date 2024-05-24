@@ -40,7 +40,7 @@
 .movieCardInfoTitles {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
 }
 
 .movieCardInfoTitles {
@@ -49,4 +49,33 @@
 
 .genresTitle {
     color: var(--grey-600);
+}
+
+.cardTitle {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.cardSection {
+  border-bottom: 1px solid var(--grey-300);
+  padding: 16px 0;
+  font-size: 16px;
+  line-height: 22.4px;
+  font-weight: 400;
+  color: black;
+}
+
+.productionCompany {
+  height: 40px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 10px;
+
+  & img {
+    max-height: 100%;
+  }
 }

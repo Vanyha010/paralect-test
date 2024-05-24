@@ -7,6 +7,7 @@ import requestBuilder from '../../app/services/requestBuilder';
 import PathBlock from '../../entities/pathBlock/pathBlock';
 import MovieCardBig from '../../entities/movieCardBig/movieCardBig';
 import { getMovieRating } from '../../shared/functions/functions';
+import MovieDetailedInfo from '../../widgets/movieDetailedInfo/movieDetailedInfo';
 
 function MovieInfoPage() {
     const { id } = useParams();
@@ -20,6 +21,7 @@ function MovieInfoPage() {
                 const movieData: MovieFullData = await requestBuilder.getMovieById(
                     parseInt(id, 10)
                 );
+                console.log(movieData);
                 setData(movieData);
             } catch (e) {
                 if (e instanceof AxiosError) {
@@ -47,6 +49,7 @@ function MovieInfoPage() {
                 <div className="movieInfoPageContent">
                     <PathBlock movieName={data.original_title} />
                     <MovieCardBig data={data} rating={rating} />
+                    <MovieDetailedInfo data={data} />
                 </div>
             ) : (
                 <Loader color="#9854F6" size={100} />

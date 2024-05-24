@@ -33,10 +33,11 @@ function MovieCardBig(props: PropsType) {
                 <Image
                     src={`${imgPath}${data.poster_path}`}
                     fallbackSrc={noPoster}
-                    // className={styles.movieCardImage}
-                    fit="contain"
+                    className={styles.movieCardImage}
+                    fit="fill"
                     w={250}
                     h="100%"
+                    max-height={352}
                 />
                 <Box className="movieCardDescription">
                     <Box className="movieCardGeneral">

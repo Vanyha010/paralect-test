@@ -24,8 +24,19 @@ const requestBuilder = {
         return result;
     },
 
+    // async getMovieById(id: number) {
+    //     const data = await axios.get(`${this.host}/movie/${id}`, this.options);
+
+    //     const result = await data.data;
+
+    //     return result;
+    // },
+
     async getMovieById(id: number) {
-        const data = await axios.get(`${this.host}/movie/${id}`, this.options);
+        const data = await axios.get(
+            `${this.host}/movie/${id}?append_to_response=videos`,
+            this.options
+        );
 
         const result = await data.data;
 
