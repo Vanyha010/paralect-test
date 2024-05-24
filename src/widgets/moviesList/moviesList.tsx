@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { MovieData, MovieRated } from '../../shared/types/types';
 import MovieCard from '../../entities/movieCard/movieCard';
 import { getMovieStorage } from '../../app/services/localStorageHandler';
+import MainPageFallback from '../../entities/fallbacks/mainPageFallback';
 
 function MoviesList({ props }: { props: MovieData[] }) {
     const [ratedMoviesList, setRatedMovies] = useState<MovieRated[]>([]);
@@ -27,7 +28,7 @@ function MoviesList({ props }: { props: MovieData[] }) {
                     return <MovieCard data={item} key={item.id} rating={0} />;
                 })
             ) : (
-                <div>No movies found</div>
+                <MainPageFallback />
             )}
         </Box>
     );
