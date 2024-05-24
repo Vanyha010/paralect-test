@@ -55,7 +55,7 @@ function MovieCard(props: PropsType) {
 
     return (
         <Box className={styles.movieCard} onClick={goToMoviePage}>
-            <Box className={styles.movieCardContent} onClick={goToMoviePage}>
+            <Box className={styles.movieCardContent}>
                 <Image
                     src={`${imgPath}${data.poster_path}`}
                     fallbackSrc={noPoster}
