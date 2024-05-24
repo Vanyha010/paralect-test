@@ -22,6 +22,7 @@ function addMovieToStorage(data: MovieShortData, rating: number) {
             rating,
         };
         localStorage.setItem('ratedMovies', JSON.stringify([movie]));
+        console.log('sdfsd');
     }
 }
 

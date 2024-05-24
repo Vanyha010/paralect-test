@@ -48,6 +48,7 @@ function MovieModalRating(props: PropsType) {
 
     const saveMovie = () => {
         if (value > 0) {
+            console.log('test');
             const dataToSave = getDataToSave(data);
             addMovieToStorage(dataToSave, value);
             setRated(true);

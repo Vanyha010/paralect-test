@@ -1,6 +1,7 @@
 import { Box } from '@mantine/core';
 import MovieCard from '../../entities/movieCard/movieCard';
 import { MovieRated } from '../../shared/types/types';
+import RatedPageFallback from '../../entities/fallbacks/ratedPageFallback';
 
 type PropsType = {
     movieItems: MovieRated[];
@@ -8,6 +9,8 @@ type PropsType = {
 
 function RatedMoviesList(props: PropsType) {
     const { movieItems } = props;
+
+    if (movieItems.length === 0) return <RatedPageFallback />;
 
     return (
         <Box className="moviesList">
