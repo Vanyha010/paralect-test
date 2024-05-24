@@ -2,7 +2,7 @@ import { Box, Image, Text, Title, useMantineTheme } from '@mantine/core';
 import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { useDisclosure } from '@mantine/hooks';
-import { GenreType, MovieFullItem, MovieItem } from '../../shared/types/types';
+import { GenreType, MovieData } from '../../shared/types/types';
 import noPoster from '../../assets/noposter.png';
 import starYellow from '../../assets/star-yellow.svg';
 import styles from './moviecard.module.css';
@@ -12,7 +12,7 @@ import MovieModalRating from '../movieModalRating/movieModalRating';
 const imgPath = 'http://image.tmdb.org/t/p/w500';
 
 type PropsType = {
-    data: MovieItem | MovieFullItem;
+    data: MovieData;
     rating: number;
 };
 
@@ -27,8 +27,9 @@ function MovieCard(props: PropsType) {
 
     const getGenresNames = () => {
         // This function sets 3 (or less) genres in the card and converts genre Id's into understandable names
-        const arr: string[] = [];
-        if (Array.isArray(genresMap) && 'genre_ids' in data) {
+
+        if (Array.isArray(genresMap) && Array.isArray(data.genre_ids)) {
+            const arr: string[] = [];
             data.genre_ids.forEach((id) => {
                 genresMap.forEach((item: GenreType) => {
                     if (item.id === id && arr.length < 3) {
@@ -36,13 +37,9 @@ function MovieCard(props: PropsType) {
                     }
                 });
             });
-        } else if ('genres' in data) {
-            data.genres.forEach((item) => {
-                arr.push(item.name);
-            });
-        }
 
-        setGenreNames(arr);
+            setGenreNames(arr);
+        }
     };
 
     useEffect(() => {
@@ -88,8 +85,7 @@ function MovieCard(props: PropsType) {
                 </Box>
             </Box>
             <MovieModalRating
-                movieName={data.original_title}
-                movieId={data.id}
+                data={data}
                 opened={opened}
                 close={close}
                 openModal={open}

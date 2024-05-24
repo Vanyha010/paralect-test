@@ -1,15 +1,15 @@
-import { MovieRated } from '../../shared/types/types';
+import { MovieData, MovieRated } from '../../shared/types/types';
 
-function addMovieToStorage(id: number, rating: number) {
+function addMovieToStorage(data: MovieData, rating: number) {
     const ratedMovies = localStorage.getItem('ratedMovies');
     if (ratedMovies) {
         const ratedMoviesList = JSON.parse(ratedMovies);
-        let movie = ratedMoviesList.find((item: MovieRated) => item.id === id);
+        let movie = ratedMoviesList.find((item: MovieRated) => item.data.id === data.id);
         if (movie) {
             movie.rating = rating;
         } else {
             movie = {
-                id,
+                data,
                 rating,
             };
             ratedMoviesList.push(movie);
@@ -18,7 +18,7 @@ function addMovieToStorage(id: number, rating: number) {
         localStorage.setItem('ratedMovies', JSON.stringify(ratedMoviesList));
     } else {
         const movie = {
-            id,
+            data,
             rating,
         };
         localStorage.setItem('ratedMovies', JSON.stringify([movie]));
@@ -35,7 +35,7 @@ function removeMovieFromStorage(id: number) {
     const ratedMovies = localStorage.getItem('ratedMovies');
     if (ratedMovies) {
         const ratedMoviesList: MovieRated[] = JSON.parse(ratedMovies);
-        const movieIndex = ratedMoviesList.map((item) => item.id).indexOf(id);
+        const movieIndex = ratedMoviesList.map((item) => item.data.id).indexOf(id);
         if (movieIndex !== -1) {
             ratedMoviesList.splice(movieIndex, 1);
             localStorage.setItem('ratedMovies', JSON.stringify(ratedMoviesList));

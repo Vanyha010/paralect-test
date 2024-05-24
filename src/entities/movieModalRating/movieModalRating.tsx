@@ -1,14 +1,19 @@
 import { Modal, Rating, Title } from '@mantine/core';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import PrimaryButton from '../../shared/UI/buttons/primaryButton/primaryButton';
 import TextButton from '../../shared/UI/buttons/textButton/textButton';
 import styles from './movieModalRating.module.css';
-import { addMovieToStorage, removeMovieFromStorage } from '../../app/services/localStorageHandler';
+import {
+    addMovieToStorage,
+    getMovieStorage,
+    removeMovieFromStorage,
+} from '../../app/services/localStorageHandler';
 import StarIcon from '../../shared/UI/starIcon/starIcon';
+import { MovieData } from '../../shared/types/types';
 
 type PropsType = {
-    movieName: string;
-    movieId: number;
+    data: MovieData;
     opened: boolean;
     openModal: () => void;
     close: () => void;
@@ -18,27 +23,41 @@ type PropsType = {
 };
 
 function MovieModalRating(props: PropsType) {
-    const { movieName, movieId, opened, openModal, close, rated, setRated, rating } = props;
+    const { data, opened, openModal, close, rated, setRated, rating } = props;
     const [value, setValue] = useState(rating);
+    const dispatch = useDispatch();
+
+    const refreshMovieList = () => {
+        const newMovieList = getMovieStorage();
+        if (newMovieList) {
+            const newMovieListArray = JSON.parse(newMovieList);
+            dispatch({
+                type: 'REFRESH_RATED_MOVIES',
+                payload: newMovieListArray,
+            });
+        }
+    };
 
     const removeMovie = () => {
-        removeMovieFromStorage(movieId);
+        removeMovieFromStorage(data.id);
         setRated(false);
         close();
+        refreshMovieList();
     };
 
     const saveMovie = () => {
         if (value > 0) {
-            addMovieToStorage(movieId, value);
+            addMovieToStorage(data, value);
             setRated(true);
             close();
+            refreshMovieList();
         }
     };
 
     return (
         <div className={styles.movieModalRating}>
             <Modal title="Your rating" opened={opened} onClose={close} centered size="sm">
-                <Title order={5}>{movieName}</Title>
+                <Title order={5}>{data.original_title}</Title>
                 <Rating value={value} onChange={setValue} count={10} size="xl" />
                 <div className={styles.buttonBlock}>
                     <PrimaryButton text="Save" click={saveMovie} />

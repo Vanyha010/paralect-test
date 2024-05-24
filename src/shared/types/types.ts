@@ -1,4 +1,4 @@
-export type MovieItem = {
+export type MovieData = {
     adult: boolean;
     backdrop_path: string;
     genre_ids: number[];
@@ -59,6 +59,6 @@ export type QueryParamsStateType = {
 };
 
 export type MovieRated = {
-    id: number;
+    data: MovieData;
     rating: number;
 };

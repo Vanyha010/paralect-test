@@ -1,10 +1,10 @@
 import { Box } from '@mantine/core';
 import { useEffect, useState } from 'react';
-import { MovieItem, MovieRated } from '../../shared/types/types';
+import { MovieData, MovieRated } from '../../shared/types/types';
 import MovieCard from '../../entities/movieCard/movieCard';
 import { getMovieStorage } from '../../app/services/localStorageHandler';
 
-function MoviesList({ props }: { props: MovieItem[] }) {
+function MoviesList({ props }: { props: MovieData[] }) {
     const [ratedMoviesList, setRatedMovies] = useState<MovieRated[]>([]);
     useEffect(() => {
         const ratedMovies = getMovieStorage();
@@ -16,9 +16,9 @@ function MoviesList({ props }: { props: MovieItem[] }) {
     return (
         <Box className="moviesList">
             {props.length > 0 ? (
-                props.map((item: MovieItem) => {
+                props.map((item: MovieData) => {
                     const movieRated = ratedMoviesList.find(
-                        (elem: MovieRated) => elem.id === item.id
+                        (elem: MovieRated) => elem.data.id === item.id
                     );
                     if (movieRated) {
                         return <MovieCard data={item} key={item.id} rating={movieRated.rating} />;

@@ -1,43 +1,29 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Box } from '@mantine/core';
-import { MovieFullItem, MovieRated } from '../../shared/types/types';
 import { getMovieStorage } from '../../app/services/localStorageHandler';
-import requestBuilder from '../../app/services/requestBuilder';
+import { IRootState } from '../../app/services/store/store';
 import MovieCard from '../../entities/movieCard/movieCard';
 
 function RatedMoviesList() {
-    const [moviesData, setMoviesData] = useState<MovieFullItem[]>([]);
-
-    const fetchMovies = async (ratedMoviesList: MovieRated[]) => {
-        const moviesPromiseArray: Promise<MovieFullItem>[] = [];
-        ratedMoviesList.forEach((ratedMovie) => {
-            const data: Promise<MovieFullItem> = requestBuilder.getMovieById(ratedMovie.id);
-            moviesPromiseArray.push(data);
-        });
-
-        const result = await Promise.allSettled(moviesPromiseArray);
-        const moviesDataArray: MovieFullItem[] = [];
-        result.forEach((item) => {
-            if (item.status === 'fulfilled') {
-                moviesDataArray.push(item.value);
-            }
-        });
-
-        setMoviesData(moviesDataArray);
-    };
+    const storageList = getMovieStorage();
+    const ratedMoviesArray = useSelector((state: IRootState) => state.ratedMovies.ratedMovies);
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        const ratedMovies = getMovieStorage();
-        if (ratedMovies) {
-            const ratedMoviesList = JSON.parse(ratedMovies);
-            fetchMovies(ratedMoviesList);
+        if (storageList) {
+            dispatch({
+                type: 'REFRESH_RATED_MOVIES',
+                payload: JSON.parse(storageList),
+            });
         }
-    }, [moviesData]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     return (
         <Box className="moviesList">
-            {moviesData.map((item) => (
-                <MovieCard data={item} key={item.id} rating={3} />
+            {ratedMoviesArray?.map((item) => (
+                <MovieCard data={item.data} key={item.data.id} rating={item.rating} />
             ))}
         </Box>
     );

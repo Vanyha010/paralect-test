@@ -1,4 +1,4 @@
-import { GenreType, QueryParamsStateType } from '../../../shared/types/types';
+import { GenreType, MovieRated, QueryParamsStateType } from '../../../shared/types/types';
 import requestBuilder from '../requestBuilder';
 
 type GenresStateType = {
@@ -114,6 +114,34 @@ export const sortMethodReducer = (
             return {
                 ...state,
                 sortMethod: action.payload,
+            };
+        default:
+            return state;
+    }
+};
+
+type RatedMoviesState = {
+    ratedMovies: MovieRated[];
+};
+
+type RatedMoviesAction = {
+    type?: string;
+    payload?: MovieRated[];
+};
+
+const initialRatedMovies: RatedMoviesState = {
+    ratedMovies: [],
+};
+
+export const ratedMoviesReducer = (
+    state: RatedMoviesState = initialRatedMovies,
+    action: RatedMoviesAction = {}
+) => {
+    switch (action.type) {
+        case 'REFRESH_RATED_MOVIES':
+            return {
+                ...state,
+                ratedMovies: action.payload,
             };
         default:
             return state;

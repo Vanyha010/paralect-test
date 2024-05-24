@@ -1,7 +1,7 @@
 import { AppShellMain, Title } from '@mantine/core';
 import { useEffect, useState } from 'react';
-import { MovieItem } from '../../shared/types/types';
-import MovieCardList from '../../widgets/moviesList/moviesList';
+import { MovieData } from '../../shared/types/types';
+import MovieList from '../../widgets/moviesList/moviesList';
 import styles from './mainpage.module.css';
 import requestBuilder from '../../app/services/requestBuilder';
 import useQueryString from '../../shared/hooks/useQueryString';
@@ -10,13 +10,13 @@ import SortSelect from '../../features/sortSelect/sortSelect';
 
 type MovieListType = {
     page: number;
-    results: MovieItem[];
+    results: MovieData[];
     total_pages: number;
     total_results: number;
 };
 
 function MainPage() {
-    const [moviesList, setMoviesList] = useState<MovieItem[]>([]);
+    const [moviesList, setMoviesList] = useState<MovieData[]>([]);
     const queryString = useQueryString();
 
     const fetchMovies = async (query: string) => {
@@ -35,7 +35,7 @@ function MainPage() {
             </Title>
             <MovieSelectBar />
             <SortSelect />
-            <MovieCardList props={moviesList} />
+            <MovieList props={moviesList} />
         </AppShellMain>
     );
 }
