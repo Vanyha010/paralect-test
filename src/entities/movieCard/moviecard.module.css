@@ -7,6 +7,7 @@
     border-radius: 12px;
     background-color: var(--white);
     overflow: hidden;
+    cursor: pointer;
 }
 
 .movieCardImage {
@@ -16,44 +17,10 @@
     max-width: 120px;
 }
 
-.movieCardContent {
-    display: flex;
-    gap: 16px;
-}
-
-.movieCardDescription {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.movieCardGeneral {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-}
-
-.movieCardGenres {
-    display: flex;
-    flex-direction: row;
-    gap: 8px;
-    flex-wrap: nowrap;
-    font-size: 16px;
-    color: var(--black);
-}
-
-.genresTitle {
-    color: var(--grey-600);
-}
 
 .title {
     color: var(--purple-500);
     font-size: 20px;
 }
 
-.rating {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 4px;
-}
+

@@ -1,0 +1,52 @@
+.movieCardContent {
+  display: flex;
+  gap: 16px;
+}
+
+.movieCardDescription {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.movieCardGeneral {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.movieCardRating {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+}
+
+.movieCardGenres {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  flex-wrap: nowrap;
+  font-size: 16px;
+  color: var(--black);
+}
+
+.movieCardInfo {
+  display: flex;
+  gap: 20px;
+}
+
+.movieCardInfoValues,
+.movieCardInfoTitles {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.movieCardInfoTitles {
+    color: var(--grey-600);
+}
+
+.genresTitle {
+  color: var(--grey-600);
+}

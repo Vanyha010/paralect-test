@@ -1,66 +1,41 @@
-import { Box, Image, Text, Title, useMantineTheme } from '@mantine/core';
-import { useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { Box, Title, Image, Text, useMantineTheme } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { useNavigate } from 'react-router-dom';
-import { GenreType, MovieData } from '../../shared/types/types';
-import noPoster from '../../assets/noposter.png';
-import starYellow from '../../assets/star-yellow.svg';
-import styles from './moviecard.module.css';
-import { IRootState } from '../../app/services/store/store';
-import MovieModalRating from '../movieModalRating/movieModalRating';
+import { useState } from 'react';
+import { MovieFullData } from '../../shared/types/types';
+import styles from './movieCardBig.module.css';
 import imgPath from '../../shared/variables/variables';
+import starYellow from '../../assets/star-yellow.svg';
+import noPoster from '../../assets/noposter.png';
+import { getBudget, getMovieDuration, getPremiereDate } from '../../shared/functions/functions';
+import MovieModalRating from '../movieModalRating/movieModalRating';
 
 type PropsType = {
-    data: MovieData;
+    data: MovieFullData;
     rating: number;
 };
 
-function MovieCard(props: PropsType) {
+function MovieCardBig(props: PropsType) {
     const { data, rating } = props;
     const [rated, setRated] = useState(rating > 0);
     const [opened, { open, close }] = useDisclosure(false);
+
     const releaseYear = new Date(data.release_date).getFullYear();
+    const duration = getMovieDuration(data.runtime);
+    const premiere = getPremiereDate(data.release_date);
+    const budget = getBudget(data.budget);
+    const revenue = getBudget(data.revenue);
+    const genres = data.genres.map((item: { id: number; name: string }) => item.name);
     const theme = useMantineTheme();
-    const genresMap = useSelector((state: IRootState) => state.genresList?.genresMap.genres);
-    const [genresNames, setGenreNames] = useState<string[]>([]);
-    const navigate = useNavigate();
-
-    const goToMoviePage = () => {
-        navigate(`/movies/${data.id}`);
-    };
-
-    const getGenresNames = () => {
-        // This function sets 3 (or less) genres in the card and converts genre Id's into understandable names
-
-        if (Array.isArray(genresMap) && Array.isArray(data.genre_ids)) {
-            const arr: string[] = [];
-            data.genre_ids.forEach((id) => {
-                genresMap.forEach((item: GenreType) => {
-                    if (item.id === id && arr.length < 3) {
-                        arr.push(item.name);
-                    }
-                });
-            });
-
-            setGenreNames(arr);
-        }
-    };
-
-    useEffect(() => {
-        getGenresNames();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [genresMap]);
 
     return (
-        <Box className={styles.movieCard} onClick={goToMoviePage}>
+        <Box className={styles.movieCard}>
             <Box className="movieCardContent">
                 <Image
                     src={`${imgPath}${data.poster_path}`}
                     fallbackSrc={noPoster}
-                    className={styles.movieCardImage}
+                    // className={styles.movieCardImage}
                     fit="contain"
-                    w={120}
+                    w={250}
                     h="100%"
                 />
                 <Box className="movieCardDescription">
@@ -76,6 +51,7 @@ function MovieCard(props: PropsType) {
                         >
                             {data.original_title}
                         </Title>
+
                         <Text>{releaseYear || 'Unknown year'}</Text>
                         <Box className="movieCardRating">
                             <img src={starYellow} alt="Rating" />
@@ -83,9 +59,21 @@ function MovieCard(props: PropsType) {
                             <Text style={{ color: theme.other.grey600 }}>({data.vote_count})</Text>
                         </Box>
                     </Box>
-                    <Box className="movieCardGenres">
-                        <span className="genresTitle">Genres</span>
-                        <span>{genresNames.join(', ')}</span>
+                    <Box className="movieCardInfo">
+                        <Box className="movieCardInfoTitles">
+                            <div>Duration</div>
+                            <div>Premiere</div>
+                            <div>Budget</div>
+                            <div>Gross worldwide</div>
+                            <div>Genres</div>
+                        </Box>
+                        <Box className="movieCardInfoValues">
+                            <div>{duration}</div>
+                            <div>{premiere}</div>
+                            <div>{budget}</div>
+                            <div>{revenue}</div>
+                            <span>{genres.join(', ')}</span>
+                        </Box>
                     </Box>
                 </Box>
             </Box>
@@ -102,4 +90,4 @@ function MovieCard(props: PropsType) {
     );
 }
 
-export default MovieCard;
+export default MovieCardBig;

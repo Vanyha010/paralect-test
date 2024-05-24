@@ -1,5 +1,5 @@
 import { AppShell, AppShellNavbar, Flex, useMantineTheme } from '@mantine/core';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { AxiosError } from 'axios';
@@ -9,8 +9,9 @@ import requestBuilder from '../services/requestBuilder';
 
 function Layout() {
     const theme = useMantineTheme();
-
     const dispatch = useDispatch();
+    const location = useLocation();
+    const isMoviesPage = location.pathname.includes('movies');
 
     const fetchGenres = async () => {
         try {
@@ -49,10 +50,10 @@ function Layout() {
             >
                 <LogoLink />
                 <Flex gap={12} direction="column" mt={80}>
-                    <Link to="/movies" className={styles.link}>
+                    <Link to="/movies" className={isMoviesPage ? styles.active : styles.link}>
                         Movies
                     </Link>
-                    <Link to="/rated" className={styles.link}>
+                    <Link to="/rated" className={isMoviesPage ? styles.link : styles.active}>
                         Rated movies
                     </Link>
                 </Flex>

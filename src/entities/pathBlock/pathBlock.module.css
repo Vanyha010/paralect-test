@@ -1,0 +1,10 @@
+.pathBlock {
+    display: flex;
+    gap: 10px;
+    font-size: 14px;
+}
+
+.pathElement {
+    text-decoration: none;
+    color: var(--purple-500);
+}

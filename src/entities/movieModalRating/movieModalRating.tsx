@@ -10,10 +10,11 @@ import {
     removeMovieFromStorage,
 } from '../../app/services/localStorageHandler';
 import StarIcon from '../../shared/UI/starIcon/starIcon';
-import { MovieData } from '../../shared/types/types';
+import { MovieData, MovieFullData } from '../../shared/types/types';
+import { getDataToSave } from '../../shared/functions/functions';
 
 type PropsType = {
-    data: MovieData;
+    data: MovieData | MovieFullData;
     opened: boolean;
     openModal: () => void;
     close: () => void;
@@ -47,7 +48,8 @@ function MovieModalRating(props: PropsType) {
 
     const saveMovie = () => {
         if (value > 0) {
-            addMovieToStorage(data, value);
+            const dataToSave = getDataToSave(data);
+            addMovieToStorage(dataToSave, value);
             setRated(true);
             close();
             refreshMovieList();

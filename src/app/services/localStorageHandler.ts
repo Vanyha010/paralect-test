@@ -1,6 +1,6 @@
-import { MovieData, MovieRated } from '../../shared/types/types';
+import { MovieRated, MovieShortData } from '../../shared/types/types';
 
-function addMovieToStorage(data: MovieData, rating: number) {
+function addMovieToStorage(data: MovieShortData, rating: number) {
     const ratedMovies = localStorage.getItem('ratedMovies');
     if (ratedMovies) {
         const ratedMoviesList = JSON.parse(ratedMovies);

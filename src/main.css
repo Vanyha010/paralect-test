@@ -1,17 +1,6 @@
 @import './shared/styles/inputs.css';
 @import './shared/styles/modal.css';
 @import './shared/styles/moviesList.css';
+@import './shared/styles/card.css';
+@import './shared/styles/pages.css';
 
-.mantine-AppShell-main {
-    width: 100%;
-    padding: 55px 90px 0 90px;
-    background-color: var(--grey-100);
-    display: flex;
-    flex-direction: column;
-}
-
-@media screen and (max-width: 1300px) {
-    .mantine-AppShell-main {
-        padding: 45px 40px 0 40px !important;
-    }
-}
