@@ -1,6 +1,7 @@
 .movieModalRating {
     display: flex;
     gap: 3px;
+    cursor: pointer;
 }
 
 .buttonBlock {

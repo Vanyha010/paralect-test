@@ -55,7 +55,7 @@ function MovieModalRating(props: PropsType) {
     };
 
     return (
-        <div className={styles.movieModalRating}>
+        <div className={styles.movieModalRating} title="Rate this movie">
             <Modal title="Your rating" opened={opened} onClose={close} centered size="sm">
                 <Title order={5}>{data.original_title}</Title>
                 <Rating value={value} onChange={setValue} count={10} size="xl" />

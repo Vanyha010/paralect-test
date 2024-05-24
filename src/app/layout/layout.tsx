@@ -15,7 +15,6 @@ function Layout() {
     const fetchGenres = async () => {
         try {
             const data = await requestBuilder.getGenresNames();
-            console.log(data.genres);
             dispatch({
                 type: 'SET_GENRES_LIST',
                 payload: data.genres,

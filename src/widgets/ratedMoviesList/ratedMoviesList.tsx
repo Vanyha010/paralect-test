@@ -1,28 +1,17 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { Box } from '@mantine/core';
-import { getMovieStorage } from '../../app/services/localStorageHandler';
-import { IRootState } from '../../app/services/store/store';
 import MovieCard from '../../entities/movieCard/movieCard';
+import { MovieRated } from '../../shared/types/types';
 
-function RatedMoviesList() {
-    const storageList = getMovieStorage();
-    const ratedMoviesArray = useSelector((state: IRootState) => state.ratedMovies.ratedMovies);
-    const dispatch = useDispatch();
+type PropsType = {
+    movieItems: MovieRated[];
+};
 
-    useEffect(() => {
-        if (storageList) {
-            dispatch({
-                type: 'REFRESH_RATED_MOVIES',
-                payload: JSON.parse(storageList),
-            });
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+function RatedMoviesList(props: PropsType) {
+    const { movieItems } = props;
 
     return (
         <Box className="moviesList">
-            {ratedMoviesArray?.map((item) => (
+            {movieItems?.map((item) => (
                 <MovieCard data={item.data} key={item.data.id} rating={item.rating} />
             ))}
         </Box>
