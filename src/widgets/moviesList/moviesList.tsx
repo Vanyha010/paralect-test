@@ -1,11 +1,17 @@
-import { Box } from '@mantine/core';
+import { Box, Loader } from '@mantine/core';
 import { useEffect, useState } from 'react';
 import { MovieData, MovieRated } from '../../shared/types/types';
 import MovieCard from '../../entities/movieCard/movieCard';
 import { getMovieStorage } from '../../app/services/localStorageHandler';
 import MainPageFallback from '../../entities/fallbacks/mainPageFallback';
 
-function MoviesList({ props }: { props: MovieData[] }) {
+type PropsType = {
+    moviesList: MovieData[];
+    isLoading: boolean;
+};
+
+function MoviesList(props: PropsType) {
+    const { moviesList, isLoading } = props;
     const [ratedMoviesList, setRatedMovies] = useState<MovieRated[]>([]);
     useEffect(() => {
         const ratedMovies = getMovieStorage();
@@ -14,10 +20,14 @@ function MoviesList({ props }: { props: MovieData[] }) {
         }
     }, []);
 
+    if (isLoading) {
+        return <Loader color="#9854F6" size={100} />;
+    }
+
     return (
         <Box className="moviesList">
-            {props.length > 0 ? (
-                props.map((item: MovieData) => {
+            {moviesList.length > 0 ? (
+                moviesList.map((item: MovieData) => {
                     const movieRated = ratedMoviesList.find(
                         (elem: MovieRated) => elem.data.id === item.id
                     );

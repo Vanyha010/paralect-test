@@ -16,3 +16,9 @@
     width: 800px;
     margin: 0 auto;
 }
+
+.mantine-Loader-root {
+    display: block;
+    margin: 200px auto;
+    grid-column: 1/3;
+}

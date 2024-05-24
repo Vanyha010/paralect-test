@@ -1,22 +1,34 @@
-import { AppShellMain } from '@mantine/core';
+import { AppShellMain, Loader } from '@mantine/core';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { AxiosError } from 'axios';
 import { MovieFullData } from '../../shared/types/types';
 import requestBuilder from '../../app/services/requestBuilder';
 import PathBlock from '../../entities/pathBlock/pathBlock';
 import MovieCardBig from '../../entities/movieCardBig/movieCardBig';
 import { getMovieRating } from '../../shared/functions/functions';
-import NotFoundPage from '../notFoundPage/notFoundPage';
 
 function MovieInfoPage() {
     const { id } = useParams();
     const [data, setData] = useState<MovieFullData | null>(null);
     const [rating, setRating] = useState(0);
+    const navigate = useNavigate();
 
     const fetchData = async () => {
         if (id) {
-            const movieData: MovieFullData = await requestBuilder.getMovieById(parseInt(id, 10));
-            setData(movieData);
+            try {
+                const movieData: MovieFullData = await requestBuilder.getMovieById(
+                    parseInt(id, 10)
+                );
+                setData(movieData);
+            } catch (e) {
+                if (e instanceof AxiosError) {
+                    if (e.response?.status === 404) {
+                        navigate('/404');
+                    }
+                }
+            }
+
             const savedRating = getMovieRating(parseInt(id, 10));
             if (savedRating) {
                 setRating(savedRating);
@@ -37,7 +49,7 @@ function MovieInfoPage() {
                     <MovieCardBig data={data} rating={rating} />
                 </div>
             ) : (
-                <NotFoundPage />
+                <Loader color="#9854F6" size={100} />
             )}
         </AppShellMain>
     );
