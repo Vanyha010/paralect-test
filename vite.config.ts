@@ -8,5 +8,6 @@ export default defineConfig({
   envPrefix: 'CTP_',
   build: {
     target: 'esnext'
-  }
+  },
+  base: "/paralect-test/"
 })

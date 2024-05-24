@@ -21,7 +21,6 @@ function MovieInfoPage() {
                 const movieData: MovieFullData = await requestBuilder.getMovieById(
                     parseInt(id, 10)
                 );
-                console.log(movieData);
                 setData(movieData);
             } catch (e) {
                 if (e instanceof AxiosError) {

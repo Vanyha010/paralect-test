@@ -10,7 +10,6 @@ type PropsType = {
 function MovieDetailedInfo(props: PropsType) {
     const { data } = props;
     const trailerSrc = `https://www.youtube.com/embed/${data.videos.results[0].key}`;
-    console.log(trailerSrc);
 
     return (
         <Box className={styles.container}>

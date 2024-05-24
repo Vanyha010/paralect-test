@@ -11,7 +11,7 @@ function Layout() {
     const theme = useMantineTheme();
     const dispatch = useDispatch();
     const location = useLocation();
-    const isMoviesPage = location.pathname.includes('movies');
+    const isRatedPage = location.pathname.includes('rated');
 
     const fetchGenres = async () => {
         try {
@@ -50,10 +50,10 @@ function Layout() {
             >
                 <LogoLink />
                 <Flex gap={12} direction="column" mt={80}>
-                    <Link to="/movies" className={isMoviesPage ? styles.active : styles.link}>
+                    <Link to="/movies" className={isRatedPage ? styles.link : styles.active}>
                         Movies
                     </Link>
-                    <Link to="/rated" className={isMoviesPage ? styles.link : styles.active}>
+                    <Link to="/rated" className={isRatedPage ? styles.active : styles.link}>
                         Rated movies
                     </Link>
                 </Flex>
