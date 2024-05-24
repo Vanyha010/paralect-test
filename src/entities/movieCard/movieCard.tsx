@@ -2,6 +2,7 @@ import { Box, Image, Text, Title, useMantineTheme } from '@mantine/core';
 import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { useDisclosure } from '@mantine/hooks';
+import { useNavigate } from 'react-router-dom';
 import { GenreType, MovieData } from '../../shared/types/types';
 import noPoster from '../../assets/noposter.png';
 import starYellow from '../../assets/star-yellow.svg';
@@ -24,6 +25,11 @@ function MovieCard(props: PropsType) {
     const theme = useMantineTheme();
     const genresMap = useSelector((state: IRootState) => state.genresList?.genresMap.genres);
     const [genresNames, setGenreNames] = useState<string[]>([]);
+    const navigate = useNavigate();
+
+    const goToMoviePage = () => {
+        navigate(`/movies/${data.id}`);
+    };
 
     const getGenresNames = () => {
         // This function sets 3 (or less) genres in the card and converts genre Id's into understandable names
@@ -48,8 +54,8 @@ function MovieCard(props: PropsType) {
     }, [genresMap]);
 
     return (
-        <Box className={styles.movieCard}>
-            <Box className={styles.movieCardContent}>
+        <Box className={styles.movieCard} onClick={goToMoviePage}>
+            <Box className={styles.movieCardContent} onClick={goToMoviePage}>
                 <Image
                     src={`${imgPath}${data.poster_path}`}
                     fallbackSrc={noPoster}

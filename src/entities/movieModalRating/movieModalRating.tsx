@@ -1,4 +1,4 @@
-import { Modal, Rating, Title } from '@mantine/core';
+import { Box, Modal, Rating, Title } from '@mantine/core';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import PrimaryButton from '../../shared/UI/buttons/primaryButton/primaryButton';
@@ -55,7 +55,11 @@ function MovieModalRating(props: PropsType) {
     };
 
     return (
-        <div className={styles.movieModalRating} title="Rate this movie">
+        <Box
+            className={styles.movieModalRating}
+            title="Rate this movie"
+            onClick={(e) => e.stopPropagation()}
+        >
             <Modal title="Your rating" opened={opened} onClose={close} centered size="sm">
                 <Title order={5}>{data.original_title}</Title>
                 <Rating value={value} onChange={setValue} count={10} size="xl" />
@@ -66,7 +70,7 @@ function MovieModalRating(props: PropsType) {
             </Modal>
             <StarIcon active={rated} click={openModal} />
             <div className={styles.ratingValue}>{rated && value}</div>
-        </div>
+        </Box>
     );
 }
 
