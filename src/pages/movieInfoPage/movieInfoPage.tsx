@@ -6,6 +6,7 @@ import requestBuilder from '../../app/services/requestBuilder';
 import PathBlock from '../../entities/pathBlock/pathBlock';
 import MovieCardBig from '../../entities/movieCardBig/movieCardBig';
 import { getMovieRating } from '../../shared/functions/functions';
+import NotFoundPage from '../notFoundPage/notFoundPage';
 
 function MovieInfoPage() {
     const { id } = useParams();
@@ -15,7 +16,6 @@ function MovieInfoPage() {
     const fetchData = async () => {
         if (id) {
             const movieData: MovieFullData = await requestBuilder.getMovieById(parseInt(id, 10));
-            console.log(movieData);
             setData(movieData);
             const savedRating = getMovieRating(parseInt(id, 10));
             if (savedRating) {
@@ -37,7 +37,7 @@ function MovieInfoPage() {
                     <MovieCardBig data={data} rating={rating} />
                 </div>
             ) : (
-                <div>Not found</div>
+                <NotFoundPage />
             )}
         </AppShellMain>
     );
